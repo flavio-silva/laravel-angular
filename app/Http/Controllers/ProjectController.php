@@ -2,12 +2,12 @@
 
 namespace CodeProject\Http\Controllers;
 
-use CodeProject\Services\ServiceInterface;
 use Illuminate\Http\Request;
+
 use CodeProject\Http\Requests;
+use CodeProject\Services\ServiceInterface;
 
-
-class ClientController extends Controller
+class ProjectController extends Controller
 {
     /**
      * @var ServiceInterface
