@@ -19,4 +19,14 @@ class Project extends Model
     {
         return $this->belongsTo(Clients::class);
     }
+
+    public function notes()
+    {
+        return $this->hasMany(ProjectNote::class);
+    }
+
+    public function members()
+    {
+        return $this->belongsToMany(User::class, 'projects_members');
+    }
 }

@@ -22,7 +22,7 @@ class CreateProjectsTable extends Migration
             $table->string('description', 255)->nullable();
             $table->decimal('progress', 5, 2);
             $table->string('status', 40)->nullable();
-            $table->timestamp('due_date');
+            $table->date('due_date')->nullable();
             $table->timestamps();
 
         });

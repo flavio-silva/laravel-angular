@@ -12,12 +12,51 @@ abstract class AbstractService implements ServiceInterface
     protected $repository;
     protected $validator;
     protected $resourceName = 'recurso';
+    protected $foreignFieldName;
     protected $relations = [];
 
     public function __construct(RepositoryInterface $repository, ValidatorInterface $validator)
     {
         $this->repository = $repository;
         $this->validator = $validator;
+    }
+
+    public function getRepository()
+    {
+        if(empty($this->relations)) {
+            return $this->repository;
+        }
+
+        return $this->repository->with($this->relations);
+    }
+
+    public function findAll($foreignFieldId = null)
+    {
+
+        if ($foreignFieldId) {
+            return $this->getRepository()
+                ->findWhere([$this->foreignFieldName => $foreignFieldId]);
+        }
+
+        return $this->getRepository()->all();
+    }
+
+    public function find($id)
+    {
+        try {
+            return $this->getRepository()->find($id);
+
+        } catch (ModelNotFoundException $e) {
+            return [
+                'error' =>  true,
+                'message' => sprintf("Não foi possível encontrar o %s de id %s", $this->resourceName, $id)
+            ];
+        } catch (\Exception $e) {
+            return [
+                'error' => true,
+                'message' => sprintf("Erro ao buscar o %s", $this->resourceName)
+            ];
+        }
     }
 
     public function create(array $data)
@@ -39,38 +78,6 @@ abstract class AbstractService implements ServiceInterface
                 'error' => true,
                 'message' => sprintf('Erro ao criar o %s', $this->resourceName),
 
-            ];
-        }
-    }
-
-    public function findAll()
-    {
-        if (empty($this->relations)) {
-            return $this->repository->all();
-        }
-
-        return $this->repository->with($this->relations)->all();
-    }
-
-    public function find($id)
-    {
-        try {
-
-            if (empty($this->relations)) {
-                return $this->repository->find($id);
-            }
-
-            return $this->repository->with($this->relations)->find($id);
-
-        } catch (ModelNotFoundException $e) {
-            return [
-                'error' =>  true,
-                'message' => sprintf("Não foi possível encontrar o %s de id %s", $this->resourceName, $id)
-            ];
-        } catch (\Exception $e) {
-            return [
-                'error' => true,
-                'message' => sprintf("Erro ao buscar o %s", $this->resourceName)
             ];
         }
     }
@@ -127,4 +134,5 @@ abstract class AbstractService implements ServiceInterface
             ];
         }
     }
+
 }

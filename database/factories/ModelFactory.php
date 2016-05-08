@@ -42,3 +42,29 @@ $factory->define(CodeProject\Entities\Project::class, function (Faker\Generator 
        'due_date' => $faker->dateTime()
    ];
 });
+
+$factory->define(CodeProject\Entities\ProjectNote::class, function (Faker\Generator $faker) {
+    return [
+        'note' => $faker->paragraph(),
+        'title' =>  $faker->word(),
+        'project_id' => rand(1, 10)
+    ];
+});
+
+
+$factory->define(CodeProject\Entities\ProjectTask::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->word(),
+        'project_id' =>  rand(1, 10),
+        'start_date' => $faker->date(),
+        'due_date' => $faker->date(),
+        'status' => $faker->randomElement(['initiate', 'in progress', 'finalized'])
+    ];
+});
+
+$factory->define(CodeProject\Entities\ProjectMember::class, function (Faker\Generator $faker) {
+    return [
+        'project_id' =>  rand(1, 10),
+        'user_id' => rand(1, 10),
+    ];
+});
