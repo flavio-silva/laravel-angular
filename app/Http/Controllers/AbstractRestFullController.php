@@ -42,7 +42,7 @@ abstract class AbstractRestFullController extends Controller
         return $this->service->delete($id);
     }
 
-    public function update(Request $request, $firstId, $secondId)
+    public function update(Request $request, $firstId, $secondId = null)
     {
         $id = $secondId ? $secondId : $firstId;
 
