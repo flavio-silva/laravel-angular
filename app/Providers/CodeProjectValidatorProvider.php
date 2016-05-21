@@ -12,6 +12,7 @@ use CodeProject\Services\ProjectNoteService;
 use CodeProject\Services\ProjectTaskService;
 use CodeProject\Validators\ProjectNoteValidator;
 use CodeProject\Validators\ProjectTaskValidator;
+use CodeProject\Services\UserService;
 
 class CodeProjectValidatorProvider extends ServiceProvider
 {
@@ -47,5 +48,11 @@ class CodeProjectValidatorProvider extends ServiceProvider
         $this->app->when(ProjectTaskService::class)
             ->needs(ValidatorInterface::class)
             ->give(ProjectTaskValidator::class);
+
+        $this->app->when(\CodeProject\Services\UserService::class)
+            ->needs(ValidatorInterface::class)
+            ->give(\CodeProject\Validators\UserValidator::class);
+
+       
     }
 }

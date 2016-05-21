@@ -14,4 +14,5 @@ class ProjectValidator extends LaravelValidator implements ValidatorInterface
         'status' => 'max:40|min:2',
         'due_date' => 'required|date'
     ];
+
 }

@@ -2,6 +2,7 @@
 
 namespace CodeProject\Providers;
 
+use CodeProject\Services\UserService;
 use Illuminate\Support\ServiceProvider;
 use CodeProject\Repositories\RepositoryInterface;
 use CodeProject\Services\ClientService;
@@ -12,6 +13,7 @@ use CodeProject\Services\ProjectNoteService;
 use CodeProject\Services\ProjectTaskService;
 use CodeProject\Repositories\ProjectNoteRepositoryEloquent;
 use CodeProject\Repositories\ProjectTaskRepositoryEloquent;
+use CodeProject\Repositories\UserRepositoryEloquent;
 
 class CodeProjectRepositoryProvider extends ServiceProvider
 {
@@ -48,5 +50,8 @@ class CodeProjectRepositoryProvider extends ServiceProvider
             ->needs(RepositoryInterface::class)
             ->give(ProjectTaskRepositoryEloquent::class);
 
+        $this->app->when(UserService::class)
+            ->needs(RepositoryInterface::class)
+            ->give(UserRepositoryEloquent::class);
     }
 }

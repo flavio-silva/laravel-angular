@@ -2,9 +2,9 @@
 
 namespace CodeProject\Services;
 
-class ProjectNoteService extends AbstractService
+class ProjectNoteService extends AbstractRelatedService
 {
-    protected $resourceName = 'notas';
     protected $relations = ['project'];
     protected $foreignFieldName = 'project_id';
+
 }

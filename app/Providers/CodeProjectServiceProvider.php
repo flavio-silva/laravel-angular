@@ -6,8 +6,11 @@ use CodeProject\Http\Controllers\ClientController;
 use CodeProject\Http\Controllers\ProjectController;
 use CodeProject\Http\Controllers\ProjectNoteController;
 use CodeProject\Http\Controllers\ProjectTaskController;
+use CodeProject\Http\Middleware\CheckProjectPermission;
+use CodeProject\Validators\ProjectValidator;
 use Illuminate\Support\ServiceProvider;
 use CodeProject\Services\ServiceInterface;
+use CodeProject\Services\AbstractServiceInterface;
 use CodeProject\Services\ClientService;
 use CodeProject\Services\ProjectService;
 use CodeProject\Services\ProjectNoteService;
@@ -48,5 +51,6 @@ class CodeProjectServiceProvider extends ServiceProvider
         $this->app->when(ProjectTaskController::class)
             ->needs(ServiceInterface::class)
             ->give(ProjectTaskService::class);
+
     }
 }

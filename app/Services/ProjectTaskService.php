@@ -2,9 +2,8 @@
 
 namespace CodeProject\Services;
 
-class ProjectTaskService extends AbstractService
+class ProjectTaskService extends AbstractRelatedService
 {
-    protected $resourceName = 'tarefa';
     protected $relations = ['project'];
     protected $foreignFieldName = 'project_id';
 }
