@@ -21,7 +21,13 @@ Route::post('oauth', function () {
 
 Route::group(['middleware' => 'oauth'], function() {
 
-    Route::resource('clients', 'ClientController', ['except' => ['create', 'edit']]);
+    Route::group(['prefix' => 'clients'], function() {
+        Route::get('', 'ClientController@index');
+        Route::post('', 'ClientController@store');
+        Route::get('{id}', 'ClientController@show');
+        Route::put('{id}', 'ClientController@update');
+        Route::delete('{id}', 'ClientController@destroy');
+    });
 
     Route::group(['prefix' => 'projects'], function() {
 

@@ -61,7 +61,6 @@ abstract class AbstractRestFullController extends Controller
     public function show()
     {
         $params = $this->getParams();
-        
          try {
 
             return $this->service
