@@ -26,7 +26,8 @@ abstract class AbstractRelatedService extends AbstractService
         if (empty($result['data'])) {
             throw new ModelNotFoundException();
         }
-        return $result;
+        
+        return $result['data'][0];
     }
 
     public function delete(array $params)
