@@ -53,6 +53,10 @@ class CodeProjectValidatorProvider extends ServiceProvider
             ->needs(ValidatorInterface::class)
             ->give(\CodeProject\Validators\UserValidator::class);
 
+        $this->app->when(\CodeProject\Services\ProjectFileService::class)
+            ->needs(ValidatorInterface::class)
+            ->give(\CodeProject\Validators\ProjectFileValidator::class);
+
        
     }
 }

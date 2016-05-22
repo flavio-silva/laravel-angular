@@ -159,6 +159,7 @@ return [
         CodeProject\Providers\CodeProjectServiceProvider::class,
         \CodeProject\Providers\CodeProjectValidatorProvider::class,
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
+        CodeProject\Providers\UploadProvider::class,
         LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider::class,
         LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider::class
     ],

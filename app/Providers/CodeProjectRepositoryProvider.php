@@ -53,5 +53,9 @@ class CodeProjectRepositoryProvider extends ServiceProvider
         $this->app->when(UserService::class)
             ->needs(RepositoryInterface::class)
             ->give(UserRepositoryEloquent::class);
+
+        $this->app->when(\CodeProject\Services\ProjectFileService::class)
+            ->needs(RepositoryInterface::class)
+            ->give(\CodeProject\Repositories\ProjectFileRepositoryEloquent::class);
     }
 }

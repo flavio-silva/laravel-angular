@@ -39,13 +39,13 @@ abstract class AbstractService implements ServiceInterface
 
     public function create(array $data)
     {        
-        $this->validator->with($data)->passesOrFail();
+        $this->validator->with($data)->passesOrFail('create');
         return $this->repository->create($data);
     }
 
     public function update(array $data)
     {
-        $this->validator->with($data)->passesOrFail();
+        $this->validator->with($data)->passesOrFail('update');
         return $this->repository->update($data, $data['id']);
     }
 

@@ -52,5 +52,9 @@ class CodeProjectServiceProvider extends ServiceProvider
             ->needs(ServiceInterface::class)
             ->give(ProjectTaskService::class);
 
+        $this->app->when(\CodeProject\Http\Controllers\ProjectFileController::class)
+        ->needs(ServiceInterface::class)
+        ->give(\CodeProject\Services\ProjectFileService::class);
+
     }
 }

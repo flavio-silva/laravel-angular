@@ -24,12 +24,12 @@ abstract class AbstractRestFullController extends Controller
         $this->authorizer = $authorizer;
     }
 
-    private function getParams()
+    protected function getParams()
     {
         return $this->request->route()->parameters();
     }
 
-    private function getRequestAllData()
+    protected function getRequestAllData()
     {
         $authenticatedUser = ['authenticatedUserId' => $this->authorizer->getResourceOwnerId()];
         return array_merge($authenticatedUser, $this->request->all(), $this->getParams());

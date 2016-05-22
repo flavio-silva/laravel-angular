@@ -2,7 +2,6 @@
 
 namespace CodeProject\Services;
 
-use Illuminate\Database\DatabaseManager;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 abstract class AbstractRelatedService extends AbstractService
@@ -22,10 +21,9 @@ abstract class AbstractRelatedService extends AbstractService
                 [
                     $this->foreignFieldName => $params[$this->foreignFieldName],
                     'id' => $params['id']
-                 ])
-            ->first();
-
-        if ($result === null) {
+                 ]);
+           
+        if (empty($result['data'])) {
             throw new ModelNotFoundException();
         }
         return $result;

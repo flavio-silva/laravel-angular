@@ -59,6 +59,15 @@ Route::group(['middleware' => 'oauth'], function() {
                         Route::put('{id}', 'ProjectNoteController@update');
                         Route::delete('{id}', 'ProjectNoteController@destroy');
                     });
+
+                    Route::group(['prefix' => 'file'], function() {
+
+                        Route::get('', 'ProjectFileController@index');
+                        Route::post('', 'ProjectFileController@store');
+                        Route::get('{id}', 'ProjectFileController@show');
+                        Route::put('{id}', 'ProjectFileController@update');
+                        Route::delete('{id}', 'ProjectFileController@destroy');
+                    });
                 });
             });
     });
