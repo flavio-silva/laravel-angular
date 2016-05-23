@@ -6,7 +6,6 @@ use CodeProject\Upload\UploadInterface;
 use CodeProject\Repositories\RepositoryInterface;
 use CodeProject\Validators\ValidatorInterface;
 use Illuminate\Filesystem\Filesystem as File;
-use Illuminate\Contracts\Filesystem\Factory as Storage;
 
 class ProjectFileService extends AbstractRelatedService
 {
