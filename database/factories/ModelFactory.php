@@ -68,3 +68,11 @@ $factory->define(CodeProject\Entities\ProjectMember::class, function (Faker\Gene
         'user_id' => rand(1, 10),
     ];
 });
+
+$factory->define(CodeProject\Entities\OAuthClient::class, function (Faker\Generator $faker) {
+    return [
+        'id' =>  '',
+        'secret' => '',
+        'name' => ''
+    ];
+});
