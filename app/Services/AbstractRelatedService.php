@@ -32,7 +32,7 @@ abstract class AbstractRelatedService extends AbstractService
 
     public function delete(array $params)
     {
-        $result = $this->repository
+        $result = $this->repository->skipPresenter(true)
             ->findWhere([
                 $this->foreignFieldName => $params[$this->foreignFieldName],
                 'id' => $params['id']
