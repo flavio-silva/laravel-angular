@@ -16,7 +16,7 @@ class ProjectValidator extends LaravelValidator implements ValidatorInterface
             'due_date' => 'required|date'
         ],
 
-        ValidatorInterface::RULE_UPDATE = > [
+        ValidatorInterface::RULE_UPDATE => [
             'owner_id' => 'required|integer',
             'client_id' => 'required|integer',
             'name' => 'required|max:40|min:2',
