@@ -1,16 +1,73 @@
+var gulp = require('gulp');
 var elixir = require('laravel-elixir');
+var liveReload = require('gulp-livereload');
+var clean = require('gulp-clean');
+var es = require('event-stream');
+var runSequence = require('run-sequence');
+var vendorPath = './resources/bower_components/';
+var buildPath = './public/build/';
 
-/*
- |--------------------------------------------------------------------------
- | Elixir Asset Management
- |--------------------------------------------------------------------------
- |
- | Elixir provides a clean, fluent API for defining some basic Gulp tasks
- | for your Laravel application. By default, we are compiling the Sass
- | file for our application, as well as publishing vendor resources.
- |
- */
+var vendorScripts = [
+    vendorPath + 'jquery/dist/jquery.min.js',
+    vendorPath + 'bootstrap/dist/js/bootstrap.min.js',
+    vendorPath + 'angular/angular.min.js',
+    vendorPath + 'angular-animate/angular-animate.min.js',
+    vendorPath + 'angular-bootstrap/ui-bootstrap.min.js',
+    vendorPath + 'angular-messages/angular-messages.min.js',
+    vendorPath + 'angular-resource/angular-resource.min.js',
+    vendorPath + 'angular-route/angular-route.min.js',
+    vendorPath + 'angular-strap/dist/modules/navbar.min.js'
+];
+var scripts = './resources/assets/js/**/*.js';
+var allScripts = vendorScripts.concat(scripts);
 
-elixir(function(mix) {
-    mix.sass('app.scss');
+var vendorStyles = [
+    vendorPath + 'bootstrap/dist/css/bootstrap.min.css',
+    vendorPath + 'bootstrap/dist/css/bootstrap-theme.min.css'
+];
+var styles = './resources/assets/css/**/*css';
+var allStyles = vendorStyles.concat(styles);
+
+gulp.task('clean', function () {
+    return gulp.src([
+            buildPath, './public/js/', './public/css/'
+        ])
+    .pipe(clean());
+});
+
+gulp.task('copy-scripts', function () {
+    return es.merge([
+        gulp.src(vendorScripts).pipe(gulp.dest(buildPath + 'js/vendor')),
+    
+        gulp.src(scripts).pipe(gulp.dest(buildPath + 'js'))
+    ])
+    .pipe(liveReload());
+});
+
+gulp.task('copy-styles', function () {
+    return es.merge([
+        gulp.src(vendorStyles).pipe(gulp.dest(buildPath + 'css/vendor')),
+
+        gulp.src(styles).pipe(gulp.dest(buildPath + 'css'))
+    ])
+    .pipe(liveReload());
+    
+});
+
+gulp.task('watch-dev', ['clean'], function () {
+    liveReload.listen();
+    gulp.start('copy-styles', 'copy-scripts');
+    gulp.watch('resources/assets/**', ['copy-styles', 'copy-scripts']);
+});
+
+gulp.task('minify', function () {
+    return elixir(function (mix) {
+        mix.styles(allStyles, 'public/css/all.css', './resources/assets')
+        .scripts(allScripts, 'public/js/all.js', './resources/assets')
+        .version(['css/all.css', 'js/all.js']);
+    });    
+});
+
+gulp.task('default', function () {    
+    return runSequence('clean', ['minify']);
 });
