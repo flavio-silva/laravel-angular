@@ -3,6 +3,9 @@
   "devDependencies": {
     "event-stream": "^3.3.2",
     "gulp": "^3.9.1",
+    "gulp-htmlmin": "^2.0.0",
+    "gulp-jshint": "^2.0.1",
+    "jshint": "^2.9.2",
     "run-sequence": "^1.2.1"
   },
   "dependencies": {

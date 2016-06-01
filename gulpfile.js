@@ -6,6 +6,8 @@ var es = require('event-stream');
 var runSequence = require('run-sequence');
 var vendorPath = './resources/bower_components/';
 var buildPath = './public/build/';
+var htmlmin = require('gulp-htmlmin');
+var jshint = require('gulp-jshint');
 
 var vendorScripts = [
     vendorPath + 'jquery/dist/jquery.min.js',
@@ -16,7 +18,10 @@ var vendorScripts = [
     vendorPath + 'angular-messages/angular-messages.min.js',
     vendorPath + 'angular-resource/angular-resource.min.js',
     vendorPath + 'angular-route/angular-route.min.js',
-    vendorPath + 'angular-strap/dist/modules/navbar.min.js'
+    vendorPath + 'angular-strap/dist/modules/navbar.min.js',
+    vendorPath + 'angular-cookies/angular-cookies.min.js',
+    vendorPath + 'query-string/query-string.js',
+    vendorPath + 'angular-oauth2/dist/angular-oauth2.min.js',
 ];
 var scripts = './resources/assets/js/**/*.js';
 var allScripts = vendorScripts.concat(scripts);
@@ -28,11 +33,17 @@ var vendorStyles = [
 var styles = './resources/assets/css/**/*css';
 var allStyles = vendorStyles.concat(styles);
 
+gulp.task('jshint', function () {
+    return gulp.src('./resources/assets/js/**/*.js')
+    .pipe(jshint())
+    .pipe(jshint.reporter());
+
+});
+
 gulp.task('clean', function () {
     return gulp.src([
-            buildPath, './public/js/', './public/css/'
-        ])
-    .pipe(clean());
+        buildPath, './public/js/', './public/css/', './public/views/'
+    ]).pipe(clean());
 });
 
 gulp.task('copy-scripts', function () {
@@ -54,10 +65,17 @@ gulp.task('copy-styles', function () {
     
 });
 
+gulp.task('copy-html', function () {
+    return gulp.src('./resources/assets/views/**/*.html')
+        .pipe(htmlmin({collapseWhitespace: true}))
+        .pipe(gulp.dest(buildPath + 'views'))
+        .pipe(liveReload());
+});
+
 gulp.task('watch-dev', ['clean'], function () {
     liveReload.listen();
-    gulp.start('copy-styles', 'copy-scripts');
-    gulp.watch('resources/assets/**', ['copy-styles', 'copy-scripts']);
+    gulp.start('copy-styles', 'copy-scripts', 'copy-html');
+    gulp.watch('resources/assets/**', ['copy-styles', 'copy-scripts', 'copy-html']);
 });
 
 gulp.task('minify', function () {
@@ -69,5 +87,5 @@ gulp.task('minify', function () {
 });
 
 gulp.task('default', function () {    
-    return runSequence('clean', ['minify']);
+    return runSequence('clean', ['jshint', 'minify', 'copy-html']);
 });

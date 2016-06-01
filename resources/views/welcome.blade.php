@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br" ng-app="app">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -63,7 +63,7 @@
         </div>
     </nav>
 
-    @yield('content')
+    <div ng-view></div>
 
     <!-- Scripts -->
     @if(Config::get('app.debug'))
@@ -75,9 +75,16 @@
         <script src="{{asset('build/js/vendor/angular-messages.min.js')}}"></script>
         <script src="{{asset('build/js/vendor/ui-bootstrap.min.js')}}"></script>
         <script src="{{asset('build/js/vendor/navbar.min.js')}}"></script>
+        <script src="{{asset('build/js/vendor/angular-cookies.min.js')}}"></script>
+        <script src="{{asset('build/js/vendor/query-string.js')}}"></script>
+        <script src="{{asset('build/js/vendor/angular-oauth2.min.js')}}"></script>
+        <script src="{{asset('build/js/app.js')}}"></script>
+        <script src="{{asset('build/js/config/routeConfig.js')}}"></script>
+        <script src="{{asset('build/js/config/oAuthProviderConfig.js')}}"></script>
+        <script src="{{asset('build/js/controllers/loginController.js')}}"></script>
+        <script src="{{asset('build/js/controllers/homeController.js')}}"></script>
     @else
         <script src="{{elixir('js/all.js')}}"></script>
-
     @endif
 </body>
 </html>
