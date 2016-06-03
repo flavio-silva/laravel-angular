@@ -1,0 +1,86 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">New Client</div>
+                <div class="panel-body">
+                    <div class="alert alert-danger" ng-if="error" ng-bind="error.message"></div>
+
+                    <form class="form-horizontal" role="form" name="clientForm">
+                        <div class="form-group"  ng-class="{'has-error': clientForm.name.$invalid && clientForm.name.$touched}">
+                            <label class="col-md-4 control-label">Name</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="name" ng-model="client.name" required maxlength="255" minlength="2">
+                                <div ng-messages="clientForm.name.$error" ng-if="clientForm.name.$touched" class="help-block">
+                                    <div ng-message="required">Campo obrigatório</div>
+                                    <div ng-message="minlength">O name tem de ter pelo menos 2 caracteres</div>
+                                    <div ng-message="maxlength">O name tem de ter no máximo 255 caracteres</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group"  ng-class="{'has-error': clientForm.responsible.$invalid && clientForm.responsible.$touched}">
+                            <label class="col-md-4 control-label">Responsible</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="responsible" ng-model="client.responsible" required maxlength="255" minlength="2">
+                                <div ng-messages="clientForm.responsible.$error" ng-if="clientForm.responsible.$touched" class="help-block">
+                                    <div ng-message="minlength">O responsible tem de ter pelo menos 2 caracteres</div>
+                                    <div ng-message="maxlength">O responsible tem de ter no máximo 255 caracteres</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group"  ng-class="{'has-error': clientForm.email.$invalid && clientForm.email.$touched}">
+                            <label class="col-md-4 control-label">E-mail</label>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control" name="email" ng-model="client.email" required>
+                                <div ng-messages="clientForm.email.$error" ng-if="clientForm.email.$touched" class="help-block">
+                                    <div ng-message="required">Campo obrigatório</div>
+                                    <div ng-message="email">Digite um e-mail válido</div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group"  ng-class="{'has-error': clientForm.phone.$invalid && clientForm.phone.$touched}">
+                            <label class="col-md-4 control-label">Phone</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="phone" ng-model="client.phone" required>
+                                <div ng-messages="clientForm.phone.$error" ng-if="clientForm.phone.$touched" class="help-block">
+                                    <div ng-message="required">Campo obrigatório</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group"  ng-class="{'has-error': clientForm.address.$invalid && clientForm.address.$touched}">
+                            <label class="col-md-4 control-label">Address</label>
+                            <div class="col-md-6">
+                                <textarea class="form-control" name="address" ng-model="client.address" required minlength="2"></textarea>
+                                <div ng-messages="clientForm.address.$error" ng-if="clientForm.address.$touched" class="help-block">
+                                    <div ng-message="required">Campo obrigatório</div>
+                                    <div ng-message="minlength">O address deve ter pelo menos 2 caracteres</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group"  ng-class="{'has-error': clientForm.obs.$invalid && clientForm.obs.$touched}">
+                            <label class="col-md-4 control-label">Obs</label>
+                            <div class="col-md-6">
+                                <textarea class="form-control" name="obs" ng-model="client.obs"></textarea>
+                                <div ng-messages="clientForm.obs.$error" ng-if="clientForm.obs.$touched" class="help-block">
+                                    <div ng-message="required">Campo obrigatório</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary" ng-click="save(client)" ng-disabled="clientForm.$invalid">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

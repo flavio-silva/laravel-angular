@@ -13,8 +13,8 @@ class ClientTransformer extends TransformerAbstract
 {
 
     /**
-     * Transform the \Client entity
-     * @param \Client $model
+     * Transform the Clients entity
+     * @param Clients $model
      *
      * @return array
      */
@@ -26,7 +26,8 @@ class ClientTransformer extends TransformerAbstract
             'responsible' => $model->responsible,
             'email' => $model->email,
             'phone' => $model->phone,
-            'address' => $model->address
+            'address' => $model->address,
+            'obs' => $model->obs
         ];
     }
 }

@@ -79,10 +79,18 @@
         <script src="{{asset('build/js/vendor/query-string.js')}}"></script>
         <script src="{{asset('build/js/vendor/angular-oauth2.min.js')}}"></script>
         <script src="{{asset('build/js/app.js')}}"></script>
+        <script src="{{asset('build/js/constants/configConstant.js')}}"></script>
         <script src="{{asset('build/js/config/routeConfig.js')}}"></script>
         <script src="{{asset('build/js/config/oAuthProviderConfig.js')}}"></script>
+        <script src="{{asset('build/js/config/oAuthTokenProviderConfig.js')}}"></script>
+
+        <script src="{{asset('build/js/services/clientService.js')}}"></script>
+
         <script src="{{asset('build/js/controllers/loginController.js')}}"></script>
         <script src="{{asset('build/js/controllers/homeController.js')}}"></script>
+        <script src="{{asset('build/js/controllers/client/clientListController.js')}}"></script>
+        <script src="{{asset('build/js/controllers/client/clientNewController.js')}}"></script>
+        <script src="{{asset('build/js/controllers/client/clientEditController.js')}}"></script>
     @else
         <script src="{{elixir('js/all.js')}}"></script>
     @endif
