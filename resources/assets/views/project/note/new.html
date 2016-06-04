@@ -1,0 +1,57 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">New Note</div>
+                <div class="panel-body">
+                    <div class="alert alert-danger" ng-if="error" ng-bind="error.message"></div>
+
+                    <form class="form-horizontal" role="form" name="noteForm">
+                        <div class="form-group"  ng-class="{'has-error': noteForm.title.$invalid && noteForm.title.$touched}">
+                            <label class="col-md-4 control-label">Title</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="title" ng-model="note.title" maxlength="255" minlength="2" required>
+                                <div ng-messages="noteForm.title.$error" ng-if="noteForm.title.$touched" class="help-block">
+                                    <div ng-message="required">O campo obrigatório</div>
+                                    <div ng-message="minlength">O title tem de ter pelo menos 2 caracteres</div>
+                                    <div ng-message="maxlength">O title tem de ter no máximo 255 caracteres</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group"  ng-class="{'has-error': noteForm.note.$invalid && noteForm.note.$touched}">
+                            <label class="col-md-4 control-label">Note</label>
+                            <div class="col-md-6">
+                                <textarea name="note" type="text" class="form-control" name="note" ng-model="note.note" maxlength="1024" minlength="2" required>
+                                </textarea>
+                                <div ng-messages="noteForm.note.$error" ng-if="noteForm.note.$touched" class="help-block">
+                                    <div ng-message="required">Campo é obrigatório</div>
+                                    <div ng-message="minlength">O note tem de ter pelo menos 2 caracteres</div>
+                                    <div ng-message="maxlength">O note tem de ter no máximo 1024 caracteres</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group"  ng-class="{'has-error': noteForm.project.$invalid && noteForm.project.$touched}">
+                            <label class="col-md-4 control-label">Note</label>
+                            <div class="col-md-6">
+                                <select name="project" ng-options="project.id as project.name for project in projects.data" ng-model="project.id" required class="help-block">
+                                    <option value="">Selecione um projeto</option>
+                                </select>
+                                <div ng-messages="noteForm.project.$error" ng-if="noteForm.project.$touched" class="help-block">
+                                    <div ng-message="required">Campo é obrigatório</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary" ng-click="save(note, project.id)" ng-disabled="noteForm.$invalid">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

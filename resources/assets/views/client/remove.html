@@ -1,0 +1,26 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Editing Client</div>
+                <div class="panel-body">
+                    <div class="alert alert-danger" ng-if="error" ng-bind="error.message"></div>
+
+                    <form class="form-horizontal" role="form" name="clientForm">
+                        <strong>Deseja realmente excluir este cliente?</strong>
+                        <ul>
+                            <li>{{client.name}}</li>
+                            <li>{{client.email}}</li>
+                            <li>{{client.phone}}</li>
+                            <li>{{client.address}}</li>
+                        </ul>
+
+                        <button type="button" class="btn btn-danger" ng-click="remove(client.id)">Delete</button>
+                        <a ng-href="#/clients" class="btn btn-primary">Voltar</a>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

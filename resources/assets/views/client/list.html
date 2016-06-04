@@ -4,6 +4,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Clients List</div>
                 <div class="panel-body">
+                    <a ng-href="#/clients/new" class="btn btn-primary">New Client</a>
                     <table class="table">
                         <thead>
                             <tr>
@@ -20,7 +21,11 @@
                                 <td>{{client.responsible}}</td>
                                 <td>{{client.email}}</td>
                                 <td>{{client.phone}}</td>
-                                <td><a class="btn btn-primary" ng-href="#/clients/{{client.id}}/edit">Editar</a></td>
+                                <td>
+                                    <a ng-href="#/clients/{{client.id}}/edit">Editar</a>
+                                    |
+                                    <a ng-href="#/clients/{{client.id}}/remove">Remover</a>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

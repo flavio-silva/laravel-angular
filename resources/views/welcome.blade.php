@@ -85,12 +85,21 @@
         <script src="{{asset('build/js/config/oAuthTokenProviderConfig.js')}}"></script>
 
         <script src="{{asset('build/js/services/clientService.js')}}"></script>
+        <script src="{{asset('build/js/services/project/projectNoteService.js')}}"></script>
+        <script src="{{asset('build/js/services/project/projectService.js')}}"></script>
 
         <script src="{{asset('build/js/controllers/loginController.js')}}"></script>
         <script src="{{asset('build/js/controllers/homeController.js')}}"></script>
         <script src="{{asset('build/js/controllers/client/clientListController.js')}}"></script>
         <script src="{{asset('build/js/controllers/client/clientNewController.js')}}"></script>
         <script src="{{asset('build/js/controllers/client/clientEditController.js')}}"></script>
+        <script src="{{asset('build/js/controllers/client/clientRemoveController.js')}}"></script>
+
+        <script src="{{asset('build/js/controllers/project/note/projectNoteListController.js')}}"></script>
+        <script src="{{asset('build/js/controllers/project/note/projectNoteNewController.js')}}"></script>
+        <script src="{{asset('build/js/controllers/project/note/projectNoteEditController.js')}}"></script>
+        <script src="{{asset('build/js/controllers/project/note/projectNoteRemoveController.js')}}"></script>
+
     @else
         <script src="{{elixir('js/all.js')}}"></script>
     @endif

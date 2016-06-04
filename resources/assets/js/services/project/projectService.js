@@ -1,7 +1,7 @@
-angular.module('app.services').factory('clientService',['$resource', 'configConstant',
+angular.module('app.services').factory('projectService',['$resource', 'configConstant',
     function ($resource, configConstant) {
 
-        var service = $resource(configConstant.baseUrl + '/clients/:id', {id: '@id'}, {
+        var service = $resource(configConstant.baseUrl + '/projects/:id', {id: '@id'}, {
             query: {method: 'GET'},
             update: {method: 'PUT'},
             delete: {method: 'DELETE'}
@@ -30,10 +30,10 @@ angular.module('app.services').factory('clientService',['$resource', 'configCons
                 return service.query();
             },
 
-            save: function (client, success, error) {
+            save: function (project, success, error) {
 
-                if (!angular.isObject(client)) {
-                    throw new TypeError('Object was expected in the first parameter "client"');
+                if (!angular.isObject(project)) {
+                    throw new TypeError('Object was expected in the first parameter "project"');
                 }
 
                 if (!angular.isFunction(success)) {
@@ -44,16 +44,16 @@ angular.module('app.services').factory('clientService',['$resource', 'configCons
                     throw new TypeError('Callback was expected in the third parameter "error"');
                 }
 
-                return service.save(client, success, error);
+                return service.save(project, success, error);
             },
 
-            update: function (params, client, success, error) {
+            update: function (params, project, success, error) {
                 if (!angular.isObject(params)) {
                     throw new TypeError('Object was expected in the first parameter "params"');
                 }
 
-                if (!angular.isObject(client)) {
-                    throw new TypeError('Object was expected in the second parameter "client"');
+                if (!angular.isObject(project)) {
+                    throw new TypeError('Object was expected in the second parameter "project"');
                 }
 
                 if (!angular.isFunction(success)) {
@@ -64,7 +64,7 @@ angular.module('app.services').factory('clientService',['$resource', 'configCons
                     throw new TypeError('Callback was expected in the fourth parameter "error"');
                 }
 
-                return service.update(params, client, success, error);
+                return service.update(params, project, success, error);
             },
             delete: function (params, success, error) {
 
