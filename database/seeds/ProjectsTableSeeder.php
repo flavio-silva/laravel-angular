@@ -13,6 +13,17 @@ class ProjectsTableSeeder extends Seeder
     public function run()
     {
         Project::truncate();
+        
+        factory(Project::class)->create([
+            'owner_id' => 1,
+            'client_id' => 1,
+            'name' => 'Project Test',
+            'description' => 'Lorem ipsum',
+            'progress' => rand(1, 100),
+            'status' => rand(1, 3),
+            'due_date' => '2016-06-06'
+       ]);
+
         factory(Project::class, 10)->create();
     }
 }
