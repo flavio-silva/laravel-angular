@@ -13,6 +13,12 @@ class ProjectNotesTableSeeder extends Seeder
     public function run()
     {
         ProjectNote::truncate();
+        factory(ProjectNote::class)->create([
+            'note' => 'Note Test',
+            'title' =>  'Lorem ipsum',
+            'project_id' => 1
+        ]);
+        
         factory(ProjectNote::class, 50)->create();
     }
 }
