@@ -8,8 +8,10 @@
     <title>Laravel</title>
 
     @if(Config::get('app.debug'))
-        <link href="{{asset('build/css/vendor/bootstrap.min.css')}}" rel="stylesheet"/>
-        <link href="{{asset('build/css/vendor/bootstrap-theme.min.css')}}" rel="stylesheet"/>
+        <link href="{{asset('build/css/app.css')}}" rel="stylesheet"/>
+        <link href="{{asset('build/css/components.css')}}" rel="stylesheet"/>
+        <link href="{{asset('build/css/flaticon.css')}}" rel="stylesheet"/>
+        <link href="{{asset('build/css/font-awesome.css')}}" rel="stylesheet"/>
     @else
         <link href="{{elixir('css/all.css')}}" rel="stylesheet"/>
     @endif
@@ -78,16 +80,19 @@
         <script src="{{asset('build/js/vendor/angular-cookies.min.js')}}"></script>
         <script src="{{asset('build/js/vendor/query-string.js')}}"></script>
         <script src="{{asset('build/js/vendor/angular-oauth2.min.js')}}"></script>
+        <script src="{{asset('build/js/vendor/angular-local-storage.min.js')}}"></script>
+
         <script src="{{asset('build/js/app.js')}}"></script>
         <script src="{{asset('build/js/constants/configConstant.js')}}"></script>
         <script src="{{asset('build/js/config/routeConfig.js')}}"></script>
         <script src="{{asset('build/js/config/oAuthProviderConfig.js')}}"></script>
         <script src="{{asset('build/js/config/oAuthTokenProviderConfig.js')}}"></script>
+        <script src="{{asset('build/js/config/httpProviderConfig.js')}}"></script>
 
         <script src="{{asset('build/js/services/clientService.js')}}"></script>
         <script src="{{asset('build/js/services/project/projectNoteService.js')}}"></script>
         <script src="{{asset('build/js/services/project/projectService.js')}}"></script>
-
+        <script src="{{asset('build/js/services/userService.js')}}"></script>
         <script src="{{asset('build/js/controllers/loginController.js')}}"></script>
         <script src="{{asset('build/js/controllers/homeController.js')}}"></script>
         <script src="{{asset('build/js/controllers/client/clientListController.js')}}"></script>
@@ -99,6 +104,11 @@
         <script src="{{asset('build/js/controllers/project/note/projectNoteNewController.js')}}"></script>
         <script src="{{asset('build/js/controllers/project/note/projectNoteEditController.js')}}"></script>
         <script src="{{asset('build/js/controllers/project/note/projectNoteRemoveController.js')}}"></script>
+
+        <script src="{{asset('build/js/controllers/project/projectListController.js')}}"></script>
+        <script src="{{asset('build/js/controllers/project/projectEditController.js')}}"></script>
+        <script src="{{asset('build/js/controllers/project/projectRemoveController.js')}}"></script>
+        <script src="{{asset('build/js/controllers/project/projectNewController.js')}}"></script>
 
     @else
         <script src="{{elixir('js/all.js')}}"></script>

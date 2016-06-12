@@ -21,6 +21,10 @@ Route::post('oauth', function () {
 
 Route::group(['middleware' => 'oauth'], function() {
 
+    Route::group(['prefix' => 'authenticatedUser'], function () {
+        Route::get('', 'AuthenticatedUserController@show');
+    });
+
     Route::group(['prefix' => 'clients'], function() {
         Route::get('', 'ClientController@index');
         Route::post('', 'ClientController@store');

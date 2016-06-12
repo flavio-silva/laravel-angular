@@ -7,6 +7,6 @@ class UserService extends AbstractService
     public function getAuthenticatedUser()
     {
         $userId = \Authorizer::getResourceOwnerId();
-        return $this->getRepository()->find($userId);
+        return $this->getRepository()->skipPresenter()->find($userId);
     }
 }

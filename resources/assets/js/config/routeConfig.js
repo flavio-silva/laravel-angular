@@ -41,5 +41,21 @@ angular.module('app').config(['$routeProvider', function ($routeProvider) {
         .when('/project/:id/notes/:noteId/remove', {
             templateUrl: 'build/views/project/note/remove.html',
             controller: 'projectNoteRemoveController'
+        })
+        .when('/projects', {
+            templateUrl: 'build/views/project/list.html',
+            controller: 'projectListController'
+        })
+        .when('/projects/new', {
+            templateUrl: 'build/views/project/new.html',
+            controller: 'projectNewController'
+        })
+        .when('/projects/:id/edit', {
+            templateUrl: 'build/views/project/edit.html',
+            controller: 'projectEditController'
+        })
+        .when('/projects/:id/remove', {
+            templateUrl: 'build/views/project/remove.html',
+            controller: 'projectRemoveController'
         });
 }]);

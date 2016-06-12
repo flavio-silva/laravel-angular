@@ -1,0 +1,95 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Editing Project</div>
+                <div class="panel-body">
+                    <div class="alert alert-danger" ng-if="error" ng-bind="error.message"></div>
+
+                    <form class="form-horizontal" role="form" name="projectForm">
+                        <div class="form-group"  ng-class="{'has-error': projectForm.name.$invalid && projectForm.name.$dirty}">
+                            <label class="col-md-4 control-label">Title</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="name" ng-model="project.name" maxlength="255" minlength="2" required>
+                                <div ng-messages="projectForm.name.$error" ng-if="projectForm.name.$dirty" class="help-block">
+                                    <div ng-message="required">O campo obrigatório</div>
+                                    <div ng-message="minlength">O name tem de ter pelo menos 2 caracteres</div>
+                                    <div ng-message="maxlength">O name tem de ter no máximo 255 caracteres</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group"  ng-class="{'has-error': projectForm.description.$invalid && projectForm.description.$dirty}">
+                            <label class="col-md-4 control-label">Description</label>
+                            <div class="col-md-6">
+                                <input type="text" name="description" class="form-control" ng-model="project.description" maxlength="255" minlength="2"/>
+
+                                <div ng-messages="projectForm.description.$error" ng-if="projectForm.description.$dirty" class="help-block">
+                                    <div ng-message="minlength">O description tem de ter pelo menos 2 caracteres</div>
+                                    <div ng-message="maxlength">O description tem de ter no máximo 255 caracteres</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group"  ng-class="{'has-error': projectForm.client_id.$invalid && projectForm.client_id.$dirty}">
+                            <label class="col-md-4 control-label">Client</label>
+                            <div class="col-md-6">
+                                <select name="client_id" ng-options="client.id as client.name for client in clients" ng-model="project.client_id" class="help-block" required>
+                                    <option value="">Selecione um client</option>
+                                </select>
+                                <div ng-messages="projectForm.client_id.$error" ng-if="projectForm.client_id.$dirty" class="help-block">
+                                    <div ng-message="required">Campo obrigatório</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group"  ng-class="{'has-error': projectForm.status.$invalid && projectForm.status.$dirty}">
+                            <label class="col-md-4 control-label">Status</label>
+                            <div class="col-md-6">
+                                <select name="status" ng-model="project.status" class="help-block" required>
+                                    <option value="">Selecione um status</option>
+                                    <option value="1">Initial</option>
+                                    <option value="2">In progress</option>
+                                    <option value="3">Finished</option>
+                                </select>
+                                <div ng-messages="projectForm.status.$error" ng-if="projectForm.status.$dirty" class="help-block">
+                                    <div ng-message="required">Campo obrigatório</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group"  ng-class="{'has-error': projectForm.progress.$invalid && projectForm.progress.$dirty}">
+                            <label class="col-md-4 control-label">Progress</label>
+                            <div class="col-md-6">
+                                <input type="number" name="progress" ng-model="project.progress" class="help-block" required min="0" max="100"/>
+                                <div ng-messages="projectForm.progress.$error" ng-if="projectForm.progress.$touched" class="help-block">
+                                    <div ng-message="required">Campo obrigatório</div>
+                                    <div ng-message="min">Valor mínimo deve ser 0</div>
+                                    <div ng-message="max">Valor máximo deve ser 100</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group"  ng-class="{'has-error': projectForm.due_date.$invalid && projectForm.due_date.$dirty}">
+                            <label class="col-md-4 control-label">Due date</label>
+                            <div class="col-md-6">
+                                <input type="date" name="due_date" class="form-control" name="due_date" ng-model="project.due_date" required/>
+
+                                <div ng-messages="projectForm.due_date.$error" ng-if="projectForm.due_date.$dirty" class="help-block">
+                                    <div ng-message="required">Campo obrigatório</div>
+                                    <div ng-message="date">Digite uma data válida</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary" ng-click="save(project)" ng-disabled="projectForm.$invalid">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

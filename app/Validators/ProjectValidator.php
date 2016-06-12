@@ -12,7 +12,7 @@ class ProjectValidator extends LaravelValidator implements ValidatorInterface
             'client_id' => 'required|integer',
             'name' => 'required|max:40|min:2',
             'description' => 'max:255|min:2',
-            'status' => 'max:40|min:2',
+            'status' => 'in:1,2,3',
             'due_date' => 'required|date'
         ],
 
@@ -21,7 +21,7 @@ class ProjectValidator extends LaravelValidator implements ValidatorInterface
             'client_id' => 'required|integer',
             'name' => 'required|max:40|min:2',
             'description' => 'max:255|min:2',
-            'status' => 'max:40|min:2',
+            'status' => 'in:1,2,3',
             'due_date' => 'required|date'
         ]
     ];

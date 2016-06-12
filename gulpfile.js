@@ -5,9 +5,9 @@ var clean = require('gulp-clean');
 var es = require('event-stream');
 var runSequence = require('run-sequence');
 var vendorPath = './resources/bower_components/';
-var buildPath = './public/build/';
 var htmlmin = require('gulp-htmlmin');
 var jshint = require('gulp-jshint');
+var buildPath = './public/build/';
 
 var vendorScripts = [
     vendorPath + 'jquery/dist/jquery.min.js',
@@ -22,6 +22,7 @@ var vendorScripts = [
     vendorPath + 'angular-cookies/angular-cookies.min.js',
     vendorPath + 'query-string/query-string.js',
     vendorPath + 'angular-oauth2/dist/angular-oauth2.min.js',
+    vendorPath + 'angular-local-storage/dist/angular-local-storage.min.js'
 ];
 var scripts = './resources/assets/js/**/*.js';
 var allScripts = vendorScripts.concat(scripts);
@@ -72,10 +73,24 @@ gulp.task('copy-html', function () {
         .pipe(liveReload());
 });
 
+gulp.task('copy-fonts', function () {
+    return gulp.src('./resources/assets/fonts/**/*.*')
+        .pipe(gulp.dest(buildPath + 'fonts'))
+        .pipe(liveReload());
+});
+
+gulp.task('copy-images', function () {
+    return gulp.src('./resources/assets/images/**/*.*')
+        .pipe(gulp.dest(buildPath + 'images'))
+        .pipe(liveReload());
+});
+
+
+
 gulp.task('watch-dev', ['clean'], function () {
     liveReload.listen();
-    gulp.start('copy-styles', 'copy-scripts', 'copy-html');
-    gulp.watch('resources/assets/**', ['copy-styles', 'copy-scripts', 'copy-html']);
+    gulp.start('copy-styles', 'copy-scripts', 'copy-html', 'copy-fonts', 'copy-images');
+    gulp.watch('resources/assets/**', ['copy-styles', 'copy-scripts', 'copy-html', 'copy-fonts', 'copy-images']);
 });
 
 gulp.task('minify', function () {
@@ -87,5 +102,5 @@ gulp.task('minify', function () {
 });
 
 gulp.task('default', function () {    
-    return runSequence('clean', ['jshint', 'minify', 'copy-html']);
+    return runSequence('clean', ['jshint', 'minify', 'copy-html', 'copy-fonts', 'copy-images']);
 });

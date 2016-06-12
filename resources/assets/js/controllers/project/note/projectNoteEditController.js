@@ -3,11 +3,10 @@ angular.module('app.controllers').controller('projectNoteEditController', ['$sco
     $scope.projects = projectService.findAll();
 
     service.find($routeParams, function (result) {
+
         $scope.note = result;
 
-        $scope.project = {
-            id: result.project.data.id
-        }
+        $scope.projectId = result.project.data.id
 
     }, function (error) {
         console.log(error);

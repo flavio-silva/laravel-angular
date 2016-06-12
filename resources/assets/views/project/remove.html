@@ -1,0 +1,28 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Deleting Project</div>
+                <div class="panel-body">
+                    <div class="alert alert-danger" ng-if="error" ng-bind="error.message"></div>
+
+                    <form class="form-horizontal" role="form" name="clientForm">
+                        <p><strong>Deseja realmente excluir este projeto?</strong></p>
+
+                        <ul>
+                            <li><strong>Name: </strong>{{project.name}}</li>
+                            <li><strong>Description: </strong>{{project.description}}</li>
+                            <li><strong>Status: </strong>{{project.status}}</li>
+                            <li><strong>Progress: </strong>{{project.progress}}</li>
+                            <li><strong>Due date: </strong>{{project.due_date | date:'dd/MM/yyyy'}}</li>
+                        </ul>
+
+                        <button type="button" class="btn btn-danger" ng-click="remove(project.id)">Delete</button>
+                        <a ng-href="#/projects" class="btn btn-primary">Voltar</a>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

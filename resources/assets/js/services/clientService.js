@@ -2,7 +2,6 @@ angular.module('app.services').factory('clientService',['$resource', 'configCons
     function ($resource, configConstant) {
 
         var service = $resource(configConstant.baseUrl + '/clients/:id', {id: '@id'}, {
-            query: {method: 'GET'},
             update: {method: 'PUT'},
             delete: {method: 'DELETE'}
         });

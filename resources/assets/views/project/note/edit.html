@@ -35,7 +35,7 @@
                         <div class="form-group"  ng-class="{'has-error': noteForm.project.$invalid && noteForm.project.$dirty}">
                             <label class="col-md-4 control-label">Note</label>
                             <div class="col-md-6">
-                                <select name="project" ng-options="project.id as project.name for project in projects.data" ng-model="project.id" required class="help-block">
+                                <select name="project" ng-options="project.id as project.name for project in projects" ng-model="projectId" required class="help-block">
                                     <option value="">Selecione um projeto</option>
                                 </select>
                                 <div ng-messages="noteForm.project.$error" ng-if="noteForm.project.$dirty" class="help-block">
@@ -46,7 +46,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary" ng-click="save(note, project.id)" ng-disabled="noteForm.$invalid">Save</button>
+                                <button type="submit" class="btn btn-primary" ng-click="save(note, note.project.data.id)" ng-disabled="noteForm.$invalid">Save</button>
                             </div>
                         </div>
                     </form>

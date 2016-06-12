@@ -4,6 +4,7 @@ namespace CodeProject\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use CodeProject\Entities\User;
+use CodeProject\Presenters\UserPresenter;
 
 class UserRepositoryEloquent extends BaseRepository implements RepositoryInterface
 {
@@ -12,5 +13,8 @@ class UserRepositoryEloquent extends BaseRepository implements RepositoryInterfa
         return User::class;
     }
 
-
+    public function presenter()
+    {
+        return UserPresenter::class; 
+    }
 }

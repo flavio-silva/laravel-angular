@@ -4,7 +4,6 @@ angular.module('app.services').factory('projectNoteService',['$resource', 'confi
         var url = configConstant.baseUrl + '/projects/:id/note/:noteId';
 
         var service = $resource(url, {notedId: '@noteId', id: '@id'}, {
-            query: {method: 'GET'},
             update: {method: 'PUT'},
             delete: {method: 'DELETE'}
         });

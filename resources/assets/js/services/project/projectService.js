@@ -2,9 +2,30 @@ angular.module('app.services').factory('projectService',['$resource', 'configCon
     function ($resource, configConstant) {
 
         var service = $resource(configConstant.baseUrl + '/projects/:id', {id: '@id'}, {
-            query: {method: 'GET'},
             update: {method: 'PUT'},
-            delete: {method: 'DELETE'}
+            delete: {method: 'DELETE'},
+            get: {
+                method: 'GET',
+                transformResponse: function (result) {
+                    
+                    data = JSON.parse(result).data;                    
+                      
+                    data.client_id = data.client.data.id;
+                    delete data.client;
+
+                    data.owner_id = data.owner.data.id;
+                    delete data.owner;
+
+                    data.members = data.members.data;
+                    delete data.members.data;
+                    
+                    var dueDate = data.due_date.split('-');
+                    data.due_date = new Date(dueDate[0], dueDate[1] - 1, dueDate[2]);
+
+                    data.progress = new Number(data.progress).valueOf();
+                    return data;
+                }
+            }
         });
 
         return {
