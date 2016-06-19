@@ -32,18 +32,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group"  ng-class="{'has-error': noteForm.project.$invalid && noteForm.project.$touched}">
-                            <label class="col-md-4 control-label">Note</label>
-                            <div class="col-md-6">
-                                <select name="project" ng-options="project.id as project.name for project in projects.data" ng-model="project.id" required class="help-block">
-                                    <option value="">Selecione um projeto</option>
-                                </select>
-                                <div ng-messages="noteForm.project.$error" ng-if="noteForm.project.$touched" class="help-block">
-                                    <div ng-message="required">Campo é obrigatório</div>
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary" ng-click="save(note, project.id)" ng-disabled="noteForm.$invalid">Save</button>

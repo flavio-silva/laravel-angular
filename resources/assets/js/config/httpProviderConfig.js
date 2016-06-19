@@ -1,5 +1,4 @@
 angular.module('app').config(['$httpProvider', function ($httpProvider) {
-
     $httpProvider.defaults.transformResponse = function (data, headers) {
         var contentType = headers('content-type');
 

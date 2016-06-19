@@ -42,7 +42,6 @@ abstract class AbstractRestFullController extends Controller
 
     public function store()
     {
-
         try {
 
             return $this->service

@@ -3,12 +3,13 @@ angular.module('app.controllers').controller('projectNoteNewController',
 
         $scope.projects = projectService.findAll();
 
-        $scope.save = function (note, projectId) {
+        $scope.save = function (note) {
+            
             var params = {
-                id: projectId
+                id: $routeParams.id
             }
 
-            service.save(params, note, function () {
+            service.save({}, note, function () {
 
                 var url = '/project/' + $routeParams.id + '/notes';
                 return $location.path(url);

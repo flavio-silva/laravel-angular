@@ -1,4 +1,4 @@
-angular.module('app.services').factory('projectService',['$resource', 'configConstant',
+angular.module('app.services').factory('projectService',['$resource', 'configConstant', '$filter', '$httpParamSerializer',
     function ($resource, configConstant) {
 
         var service = $resource(configConstant.baseUrl + '/projects/:id', {id: '@id'}, {
@@ -7,25 +7,12 @@ angular.module('app.services').factory('projectService',['$resource', 'configCon
             get: {
                 method: 'GET',
                 transformResponse: function (result) {
-                    
-                    data = JSON.parse(result).data;                    
-                      
-                    data.client_id = data.client.data.id;
-                    delete data.client;
-
-                    data.owner_id = data.owner.data.id;
-                    delete data.owner;
-
-                    data.members = data.members.data;
-                    delete data.members.data;
-                    
-                    var dueDate = data.due_date.split('-');
-                    data.due_date = new Date(dueDate[0], dueDate[1] - 1, dueDate[2]);
-
-                    data.progress = new Number(data.progress).valueOf();
+                    data = JSON.parse(result).data;
+                    var date = data.due_date.split('-');
+                    data.due_date = new Date(date[0], date[1] - 1, date[2]);
                     return data;
                 }
-            }
+            },
         });
 
         return {

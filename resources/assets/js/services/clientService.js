@@ -25,8 +25,14 @@ angular.module('app.services').factory('clientService',['$resource', 'configCons
                 return service.get({id: id}, success, error);
             },
 
-            findAll: function () {
-                return service.query();
+            findAll: function (params) {
+                params = params || {}
+
+                if(!angular.isObject(params)) {
+                    throw new TypeError('Object was expected in the parameter "params"');
+                }
+
+                return service.query(params);
             },
 
             save: function (client, success, error) {

@@ -14,7 +14,7 @@ var vendorScripts = [
     vendorPath + 'bootstrap/dist/js/bootstrap.min.js',
     vendorPath + 'angular/angular.min.js',
     vendorPath + 'angular-animate/angular-animate.min.js',
-    vendorPath + 'angular-bootstrap/ui-bootstrap.min.js',
+    vendorPath + 'angular-bootstrap/ui-bootstrap-tpls.min.js',
     vendorPath + 'angular-messages/angular-messages.min.js',
     vendorPath + 'angular-resource/angular-resource.min.js',
     vendorPath + 'angular-route/angular-route.min.js',

@@ -36,14 +36,14 @@ angular.module('app.services').factory('projectNoteService',['$resource', 'confi
                 return service.query(params);
             },
 
-            save: function (params, client, success, error) {
+            save: function (params, note, success, error) {
 
                 if (!angular.isObject(params)) {
                     throw new TypeError('Object was expected in the first parameter "params"');
                 }
 
-                if (!angular.isObject(client)) {
-                    throw new TypeError('Object was expected in the first parameter "client"');
+                if (!angular.isObject(note)) {
+                    throw new TypeError('Object was expected in the first parameter "note"');
                 }
 
                 if (!angular.isFunction(success)) {
@@ -54,16 +54,16 @@ angular.module('app.services').factory('projectNoteService',['$resource', 'confi
                     throw new TypeError('Callback was expected in the third parameter "error"');
                 }
 
-                return service.save(params, client, success, error);
+                return service.save(params, note, success, error);
             },
 
-            update: function (params, client, success, error) {
+            update: function (params, note, success, error) {
                 if (!angular.isObject(params)) {
                     throw new TypeError('Object was expected in the first parameter "params"');
                 }
 
-                if (!angular.isObject(client)) {
-                    throw new TypeError('Object was expected in the second parameter "client"');
+                if (!angular.isObject(note)) {
+                    throw new TypeError('Object was expected in the second parameter "note"');
                 }
 
                 if (!angular.isFunction(success)) {
@@ -74,7 +74,7 @@ angular.module('app.services').factory('projectNoteService',['$resource', 'confi
                     throw new TypeError('Callback was expected in the fourth parameter "error"');
                 }
 
-                return service.update(params, client, success, error);
+                return service.update(params, note, success, error);
             },
             delete: function (params, success, error) {
 

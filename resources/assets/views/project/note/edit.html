@@ -35,7 +35,7 @@
                         <div class="form-group"  ng-class="{'has-error': noteForm.project.$invalid && noteForm.project.$dirty}">
                             <label class="col-md-4 control-label">Note</label>
                             <div class="col-md-6">
-                                <select name="project" ng-options="project.id as project.name for project in projects" ng-model="projectId" required class="help-block">
+                                <select name="project" ng-options="project.id as project.name for project in projects" ng-model="projectId" required class="help-block form-control">
                                     <option value="">Selecione um projeto</option>
                                 </select>
                                 <div ng-messages="noteForm.project.$error" ng-if="noteForm.project.$dirty" class="help-block">

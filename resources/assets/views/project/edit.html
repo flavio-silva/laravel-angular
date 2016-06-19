@@ -34,11 +34,12 @@
                         <div class="form-group"  ng-class="{'has-error': projectForm.client_id.$invalid && projectForm.client_id.$dirty}">
                             <label class="col-md-4 control-label">Client</label>
                             <div class="col-md-6">
-                                <select name="client_id" ng-options="client.id as client.name for client in clients" ng-model="project.client_id" class="help-block" required>
-                                    <option value="">Selecione um client</option>
-                                </select>
+
+                                <input type="text" name="client_id" class="form-control" uib-typeahead="client.id as client.name for client in getClients($viewValue) | limitTo:5" ng-model="project.client_id" typeahead-input-formatter="formatName(project)" typeahead-wait-ms="500" typeahead-on-select="selectClient($item)" typeahead-editable="false" required autocomplete="off"/>
+
                                 <div ng-messages="projectForm.client_id.$error" ng-if="projectForm.client_id.$dirty" class="help-block">
                                     <div ng-message="required">Campo obrigatório</div>
+                                    <div ng-message="editable">Selecione um cliente válido</div>
                                 </div>
                             </div>
                         </div>
@@ -46,7 +47,7 @@
                         <div class="form-group"  ng-class="{'has-error': projectForm.status.$invalid && projectForm.status.$dirty}">
                             <label class="col-md-4 control-label">Status</label>
                             <div class="col-md-6">
-                                <select name="status" ng-model="project.status" class="help-block" required>
+                                <select name="status" ng-model="project.status" class="help-block form-control" required>
                                     <option value="">Selecione um status</option>
                                     <option value="1">Initial</option>
                                     <option value="2">In progress</option>
@@ -73,7 +74,12 @@
                         <div class="form-group"  ng-class="{'has-error': projectForm.due_date.$invalid && projectForm.due_date.$dirty}">
                             <label class="col-md-4 control-label">Due date</label>
                             <div class="col-md-6">
-                                <input type="date" name="due_date" class="form-control" name="due_date" ng-model="project.due_date" required/>
+                                <p class="input-group">
+                                    <input type="text" name="due_date" class="form-control" uib-datepicker-popup="dd/MM/yyyy" datepicker-options="dateOptions" ng-model="project.due_date" is-open="due_date.isOpened" close-text="Close" required/>
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="openDatePicker()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                </p>
 
                                 <div ng-messages="projectForm.due_date.$error" ng-if="projectForm.due_date.$dirty" class="help-block">
                                     <div ng-message="required">Campo obrigatório</div>

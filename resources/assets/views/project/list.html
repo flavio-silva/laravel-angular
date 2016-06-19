@@ -15,7 +15,7 @@
                                 <th>Due date</th>
                                 <th>Owner</th>
                                 <th>Client</th>
-                                <th></th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -24,7 +24,7 @@
                                 <td>{{project.description}}</td>
                                 <td>{{project.progress}}</td>
                                 <td>{{project.status}}</td>
-                                <td>{{project.due_date}}</td>
+                                <td>{{project.due_date | date:'dd/MM/yyyy'}}</td>
                                 <td>{{project.owner.data.name}}</td>
                                 <td>{{project.client.data.name}}</td>
                                 <td>
